@@ -1133,6 +1133,11 @@
           "description": "Released on 06/29/2023",
           "children": [
             {
+              "path": "./changelog/1.44.7.md",
+              "title": "1.44.7",
+              "description": "Released on 06/13/2024"
+            },
+            {
               "path": "./changelog/1.44.6.md",
               "title": "1.44.6",
               "description": "Released on 05/17/2024"
