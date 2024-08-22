@@ -1,86 +1,16 @@
 # Workspace organization
 
-This article describes considerations for deciding how to set up your Coder
-workspaces.
+Don't know how to set up your Coder workspaces? We're here to help.
 
-In general, the fewer workspaces per developer, the easier it is for the
-individual developer to manage. However, the complexity of the underlying images
-increases as the images need to support multiple projects, each potentially with
-its own language, set of tooling, and dependencies.
+In general, the fewer workspaces per developer, the easier it is for individual developers to manage. For teams that don't have a complex workflow, try starting with one workspace per developer. 
 
-Nevertheless, for teams that do not have a complex development workflow, we
-recommend starting with one workspace per developer, since it is the fastest,
-most straightforward model to adopt.
+With more complex workflows, you may need to support multiple projects, each potentially with its own language, set of tooling, and dependencies. In this scenario, a different type of Coder environment could be more helpful. Use the table below to see  pros and cons of each option.
 
-## One workspace per developer
-
-With one workspace per developer, you can think of the Coder workspace the way
-you would a laptop: the workspace is where you have all of your languages,
-dependencies, and tooling installed, and it is the one place you'd go to work on
-your projects.
-
-Benefits:
-
-- Fewer workspaces to manage
-- No need to switch between workspaces for different projects
-
-Potential caveats:
-
-- The size of the workspace can grow quite large
-- The image supporting such a workspace can become complex
-
-## One workspace per architecture
-
-In this situation, you would create one workspace for your JavaScript projects,
-one workspace for your Python projects, and so on.
-
-Benefits:
-
-- Smaller images, since they only contain one language and its dependencies
-
-Potential caveats:
-
-- Developers may have multiple workspaces, consuming more storage space overall
-
-## One workspace per project per developer
-
-Each developer has multiple workspaces, with each workspace devoted to one
-project. If a developer is currently working on three projects, they'd have
-three workspaces.
-
-Benefits:
-
-- Streamlined images with only the languages and dependencies included
-- Smaller, lighter workspaces
-
-Potential caveats:
-
-- As the number of workspaces per developer grows, the importance of
-  well-defined dotfiles grow to ensure that developers do not spend too much
-  time personalizing their workspaces
-
-### One workspace per major version of the project
-
-A subset of this category is one workspace per **major** version of a project
-(e.g., making major, breaking changes to something). Furthermore, Coder allows
-you to change the underlying image, so you can update the image (changing out
-the language and any dependencies) if needed.
-
-The benefits and potential caveats of this option are similar to those involved
-with setting up one workspace per project per developer.
-
-## One workspace per feature/branch
-
-Setting up one workspace per feature (or branch) allows your developers to focus
-only on that feature.
-
-With dev URLs, allowing access to the work in progress, the workspace could also
-replace the need for any preview builds, while also providing access to some of
-the logs. Reviewers or other developers could push changes to the branch/pull
-request from their own workspaces without needing access to the primary
-developers' workspaces.
-
-## One workspace per commit
-
-We do not recommend creating workspaces on a per-commit basis due to the high
-cost of resources in these situations.
+| One workspace... | Description | Benefits | Caveats |
+| ---------------- | ----------- | -------- | ------- |
+| Per developer | With one workspace per developer, think of the Coder workspace the way you would a laptop: the workspace is where you have all of your languages, dependencies, and tooling installed, and it is the one place you go to work on projects. This is best for simple workflows. | ✅ Fewer workspaces to manage </br>✅ No switching between workspaces for different projects | ❌ Size of the workspace can become large </br> ❌ Image supporting such a workspace can become complex |
+| Per architecture | Imagine this as one workspace for your JavaScript projects, one workspace for your Python projects, and so on. This is best for workflows with using several different architectures. | ✅ Smaller images because they only contain one language and its dependencies | ❌ Developers need multiple workspaces, consuming more storage space overall |
+| Per project per developer | In this environment, each developer has multiple workspaces, with each workspace devoted to one project. If a developer is working on three projects, they'd have three workspaces. This is best if devs tend to work on multiple projects simultaneously. | ✅ Streamlined images with only the languages and dependencies included </br>✅ Smaller, lighter workspaces | ❌ As the number of workspaces per developer grows, developers may spend too much personalizing workspaces </br>💡 Avoid this drawback with well-defined dotfiles | 
+| Per major version of the project | A version of the "per project per developer" option is to use one workspace per **major** version of a project. This is best if devs are primarily working on multiple versions simultaneously. </br>💡 **Tip:** Coder allows you to change the underlying image, so you can update the image (changing out the language and any dependencies) if needed. | ✅ Streamlined images with only the languages and dependencies included </br>✅ Smaller, lighter workspaces | ❌ As the number of workspaces per developer grows, developers may spend too much personalizing workspaces </br>💡 Avoid this drawback with well-defined dotfiles | 
+| Per feature or branch | Setting up one workspace per feature (or branch) allows developers to focus. This is best if devs primarily work on single features or branches rather than full projects. | ✅ Allows developers to focus on a single feature </br> ✅ Allows access to the work in progress with dev URLs (could replace preview builds) </br> ✅ Push changes to the branch/pull request from their own workspace without needing access to primary developers' workspaces | ❌ Consumes more storage space | 
+| Per commit | This is not a recommended workflow. | n/a | ❌ High cost of resources |
